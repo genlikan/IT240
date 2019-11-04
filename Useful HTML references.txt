@@ -1,0 +1,6 @@
+
+//Used to link to other .html files
+<a href="about.html" title="About Me">About Me</a>
+
+https://www.w3schools.com/html/html_links.asp
+https://www.w3schools.com/html/
