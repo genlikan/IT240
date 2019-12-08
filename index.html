@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS460 Graphics at UMass Boston</title>
     <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
     <!-- <script type="text/javascript" src="js/table.js"></script> -->
@@ -17,108 +18,92 @@
     <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
-
-    
   </head>
   <body>
-    
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#top">Top</a>
+      <a href="#WebGL">What is WebGL?</a>
+      <a href="#Rubik’s Cube">Rubik's Cube</a>
+      <a href="#Data Visualization">Data Visualization</a>
+      <a href="#slicedrop">SliceDrop</a>
+      <a href="#bottom">Bottom</a>
+    </div>
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
     <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Graphics</span></div>
+    <div class="sidebar">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
     <script type="text/javascript">
     const backgroundColor = 0x000000;
-
     /*////////////////////////////////////////*/
-
     var renderCalls = [];
     function render () {
       requestAnimationFrame( render );
       renderCalls.forEach((callback)=>{ callback(); });
     }
     render();
-
     /*////////////////////////////////////////*/
-
     var scene = new THREE.Scene();
-
     var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
     camera.position.set(0,0,1.2);
-
     var renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.setClearColor( backgroundColor );//0x );
-
     renderer.toneMapping = THREE.LinearToneMapping;
     renderer.toneMappingExposure = Math.pow( 0.94, 5.0 );
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
-
     window.addEventListener( 'resize', function () {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize( window.innerWidth, window.innerHeight );
     }, false );
-
     document.body.appendChild( renderer.domElement);
-
     function renderScene(){ renderer.render( scene, camera ); }
     renderCalls.push(renderScene);
-
     /* ////////////////////////////////////////////////////////////////////////// */
-
     var controls = new THREE.OrbitControls( camera );
-
     controls.enableZoom = false;
-
     /* ////////////////////////////////////////////////////////////////////////// */
-
     var light = new THREE.PointLight( 0xffffcc, 20, 200 );
     light.position.set( 4, 30, -20 );
     scene.add( light );
-
     var light2 = new THREE.AmbientLight( 0x20202A, 20, 100 );
     light2.position.set( 30, -10, 30 );
     scene.add( light2 );
-
     /* ////////////////////////////////////////////////////////////////////////// */
-
     var loader = new THREE.GLTFLoader();
     loader.crossOrigin = true;
     loader.load( 'models/webgl_logo/scene.gltf', function ( data ) {
-
-      
         logo = data.scene;
         logo.position.set(0, 0, 0);
         scene.add( logo );
-
     });
-
     window.onload = function() {
       animate();
     }
      function animate() {
-
         requestAnimationFrame( animate );
-
         if (logo.rotation.y < 6.3){
           logo.rotation.y += 0.005;
           console.log(logo.rotation.y);   
         }
-
       };
     </script>
-
     <br>
-
-    <center>
-      <!-- <iframe class='video' src="https://player.vimeo.com/video/345249001?byline=0&portrait=0&title=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
-    </center>
-
     <center>
       <div id='description'>
        <span class='highlight'>
-       <!-- <img src="imgs/WebGL_logo_logotype-700x292.png" alt="WebGL logo">  -->
-       
-       <h1>What is WebGL?</h1>
+       <h1 id="WebGL">What is WebGL?</h1>
 <p>
 In short, is a JavaScript API that allows for GPU-accelerated usage.
 </p>
@@ -129,8 +114,8 @@ But technological descriptions are esoteric in nature, time to showcase some pop
 <iframe src="http://madebyevan.com/webgl-water/" width="990" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 <p>Here is one of, if not the most popular examples associated with WebGL technology. </p>
-<p> Made by <a href="http://madebyevan.com/webgl-water/">Evan Wallace</a>, this WebGL demo requires a decent modern graphics card to execute.
-If you don’t see it on here, you may refer to this link on <a href="https://www.youtube.com/watch?v=R0O_9bp3EKQ">YouTube</a>. </p>
+<p> Made by <a href="http://madebyevan.com/webgl-water/" target="_blank">Evan Wallace</a>, this WebGL demo requires a decent modern graphics card to execute.
+If you don’t see it on here, you may refer to this link on <a href="https://www.youtube.com/watch?v=R0O_9bp3EKQ" target="_blank">YouTube</a>. </p>
 <p> From here you may interact with the demo,
 <dl>
   <dt>Try:</dt>
@@ -141,19 +126,19 @@ If you don’t see it on here, you may refer to this link on <a href="https://ww
 <p>More interactions are availiable on his page. <br> This demo makes an impressive case for illustrative applications of WebGL.</p>
  </p>
 
-<iframe src="https://www.randelshofer.ch/webgl/rubikscube/" width="740" height="660"></iframe>
-
-Rubik’s cube: <a href="https://www.randelshofer.ch/webgl/rubikscube/">Website Link</a> <br>
+<p id="Rubik’s Cube"><iframe src="https://www.randelshofer.ch/webgl/rubikscube/" width="740" height="660"></iframe></p>
+Rubik’s cube: <a href="https://www.randelshofer.ch/webgl/rubikscube/" target="_blank">Website Link</a> <br>
 
 <p>Ah, the Rubik's Cube, an old friend.</p>
 <p>Feel free to experiment with the controls!</p>
 <p>As the Rubik's Cube demonstrates, <br> WebGL can also be used to create tools and interactive toys, games, and the like.</p>
 
 
-<p>Another application of WebGL is Data Visualization.</p>
+<p id="Data Visualization">Another application of WebGL is Data Visualization.</p>
 
 <iframe src="https://students.washington.edu/aodhan/webgl_globe.html" width="740" height="660"></iframe>
-
+<p>The above demonstration - created by <a href="https://students.washington.edu/aodhan/webgl_globe.html" target="_blank">Aodhan Sweeney</a> - denotes the rising tempratures over the past few decades.
+</p>
 <p>Humans are intuitive creatures. <br> </p>
 <p>
 There exist instances where using numbers and symbols simply isn't enough to carry the message or the point forward.
@@ -162,25 +147,19 @@ Often when we are attempting to illustrate a point via numbers, percentages or o
 </p>
 <p>Enter WebGL.</p> 
 <p>WebGL technology enables us to (interactively) visualize data points to aid in illustrating key points.</p>
-<p>The above demonstration - created by <a href="https://students.washington.edu/aodhan/webgl_globe.html">Aodhan Sweeney</a> - denotes the rising tempratures over the past few decades.
-</p>
 
-<iframe src="http://x.babymri.org/example3/?scene=http://x.babymri.org/example3/scene.json" width="740" height="660"></iframe>
+
+<iframe id="slicedrop" src="http://x.babymri.org/example3/?scene=http://x.babymri.org/example3/scene.json" width="740" height="660"></iframe>
 
 Data Visualizations isn't just limited to Global Climate change awareness.
-<p>
-It can also be used in the Medical field.
-</p>
-
+<p>It can also be used in the Medical field.</p>
 <p>The above demo, as quoted from SliceDrop shows:</p>
-
 <blockquote cite="https://slicedrop.com/">
-"The surface of the left hemisphere of a 2 years old healthy brain.""
+"The surface of the left hemisphere of a 2 years old healthy brain."
 </blockquote>
-
-Developed by a fellow University of Massachusetts Boston Professor <a href="danielhaehn.com">Daniel Haehn</a>.
+Developed by a fellow University of Massachusetts Boston Professor <a href="http://www.danielhaehn.com" target="_blank">Daniel Haehn</a>.
 <br>
-<a href="https://slicedrop.com/">SliceDrop</a> - is a tool to conceptualize the human brain and other medical applications in interactive 3D space.
+<a href="https://slicedrop.com/" target="_blank">SliceDrop</a> - is a tool to conceptualize the human brain and other medical applications in interactive 3D space.
 <br>
 This tool also features realtime collaboration.
 </p>
