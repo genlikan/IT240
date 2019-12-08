@@ -5,31 +5,209 @@
     <meta charset="utf-8" />
     <title>CS460 Graphics at UMass Boston</title>
     <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
-    <script type="text/javascript" src="js/table.js"></script>
+    <!-- <script type="text/javascript" src="js/table.js"></script> -->
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/fonts.css"/>
     <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+    <script src="https://threejs.org/build/three.js" type="text/javascript"></script>
+    <!-- <script src="https://threejs.org/build/three.min.js" type="text/javascript"></script> -->
+    <!-- <script src="https://threejs.org/build/three.module.js" type="text/javascript"></script> -->
+    <!-- <script src="https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/GLTFLoader.js" type="text/javascript"></script> -->
+
+    <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
+
+    
   </head>
   <body>
     
-    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>CS460 Graphics</span></div>
+    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Graphics</span></div>
+    <script type="text/javascript">
+    const backgroundColor = 0x000000;
+
+    /*////////////////////////////////////////*/
+
+    var renderCalls = [];
+    function render () {
+      requestAnimationFrame( render );
+      renderCalls.forEach((callback)=>{ callback(); });
+    }
+    render();
+
+    /*////////////////////////////////////////*/
+
+    var scene = new THREE.Scene();
+
+    var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
+    camera.position.set(0,0,1.2);
+
+    var renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor( backgroundColor );//0x );
+
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = Math.pow( 0.94, 5.0 );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+
+    window.addEventListener( 'resize', function () {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }, false );
+
+    document.body.appendChild( renderer.domElement);
+
+    function renderScene(){ renderer.render( scene, camera ); }
+    renderCalls.push(renderScene);
+
+    /* ////////////////////////////////////////////////////////////////////////// */
+
+    var controls = new THREE.OrbitControls( camera );
+
+    controls.enableZoom = false;
+
+    /* ////////////////////////////////////////////////////////////////////////// */
+
+    var light = new THREE.PointLight( 0xffffcc, 20, 200 );
+    light.position.set( 4, 30, -20 );
+    scene.add( light );
+
+    var light2 = new THREE.AmbientLight( 0x20202A, 20, 100 );
+    light2.position.set( 30, -10, 30 );
+    scene.add( light2 );
+
+    /* ////////////////////////////////////////////////////////////////////////// */
+
+    var loader = new THREE.GLTFLoader();
+    loader.crossOrigin = true;
+    loader.load( 'models/webgl_logo/scene.gltf', function ( data ) {
+
+      
+        logo = data.scene;
+        logo.position.set(0, 0, 0);
+        scene.add( logo );
+
+    });
+
+    window.onload = function() {
+      animate();
+    }
+     function animate() {
+
+        requestAnimationFrame( animate );
+
+        if (logo.rotation.y < 6.3){
+          logo.rotation.y += 0.005;
+          console.log(logo.rotation.y);   
+        }
+
+      };
+    </script>
 
     <br>
 
     <center>
-      <iframe class='video' src="https://player.vimeo.com/video/345249001?byline=0&portrait=0&title=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <!-- <iframe class='video' src="https://player.vimeo.com/video/345249001?byline=0&portrait=0&title=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
     </center>
 
     <center>
       <div id='description'>
-       <span class='highlight'> After completion of this course, you will be able to develop rich and interactive web-based 3D visualizations for computers, smartphones, and tablets!</span> By using WebGL, you will learn to create immersive and high-quality graphics including 3D geometric transformations, camera transformations, the image-rendering process, as well as materials and texture mapping. This course also includes advanced topics such as color representations, light simulation, dealing with geometries, and creating animations. And since everything runs in the browser, you can show your work to your friends with a link to a website-how cool is that!
+       <span class='highlight'>
+       <!-- <img src="imgs/WebGL_logo_logotype-700x292.png" alt="WebGL logo">  -->
+       
+       <h1>What is WebGL?</h1>
+<p>
+In short, is a JavaScript API that allows for GPU-accelerated usage.
+</p>
+<p>
+But technological descriptions are esoteric in nature, time to showcase some popular applications of WebGL.
+</p>
+
+<iframe src="http://madebyevan.com/webgl-water/" width="990" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+<p>Here is one of, if not the most popular examples associated with WebGL technology. </p>
+<p> Made by <a href="http://madebyevan.com/webgl-water/">Evan Wallace</a>, this WebGL demo requires a decent modern graphics card to execute.
+If you don’t see it on here, you may refer to this link on <a href="https://www.youtube.com/watch?v=R0O_9bp3EKQ">YouTube</a>. </p>
+<p> From here you may interact with the demo,
+<dl>
+  <dt>Try:</dt>
+  <dd>Clicking on the water to make ripples</dd>
+  <dd>Dragging the background to rotate the camera</dd>
+  <dd>Dragging the sphere to move it around</dd>
+</dl>
+<p>More interactions are availiable on his page. <br> This demo makes an impressive case for illustrative applications of WebGL.</p>
+ </p>
+
+<iframe src="https://www.randelshofer.ch/webgl/rubikscube/" width="740" height="660"></iframe>
+
+Rubik’s cube: <a href="https://www.randelshofer.ch/webgl/rubikscube/">Website Link</a> <br>
+
+<p>Ah, the Rubik's Cube, an old friend.</p>
+<p>Feel free to experiment with the controls!</p>
+<p>As the Rubik's Cube demonstrates, <br> WebGL can also be used to create tools and interactive toys, games, and the like.</p>
+
+
+<p>Another application of WebGL is Data Visualization.</p>
+
+<iframe src="https://students.washington.edu/aodhan/webgl_globe.html" width="740" height="660"></iframe>
+
+<p>Humans are intuitive creatures. <br> </p>
+<p>
+There exist instances where using numbers and symbols simply isn't enough to carry the message or the point forward.
+<br>
+Often when we are attempting to illustrate a point via numbers, percentages or other symbols, we typically fail to grasp the degree of significance or the scale in which an issue could impact us.
+</p>
+<p>Enter WebGL.</p> 
+<p>WebGL technology enables us to (interactively) visualize data points to aid in illustrating key points.</p>
+<p>The above demonstration - created by <a href="https://students.washington.edu/aodhan/webgl_globe.html">Aodhan Sweeney</a> - denotes the rising tempratures over the past few decades.
+</p>
+
+<iframe src="http://x.babymri.org/example3/?scene=http://x.babymri.org/example3/scene.json" width="740" height="660"></iframe>
+
+Data Visualizations isn't just limited to Global Climate change awareness.
+<p>
+It can also be used in the Medical field.
+</p>
+
+<p>The above demo, as quoted from SliceDrop shows:</p>
+
+<blockquote cite="https://slicedrop.com/">
+"The surface of the left hemisphere of a 2 years old healthy brain.""
+</blockquote>
+
+Developed by a fellow University of Massachusetts Boston Professor <a href="danielhaehn.com">Daniel Haehn</a>.
+<br>
+<a href="https://slicedrop.com/">SliceDrop</a> - is a tool to conceptualize the human brain and other medical applications in interactive 3D space.
+<br>
+This tool also features realtime collaboration.
+</p>
+
+
+So is this technology hard to use?
+Surprisingly simple!
+(Provided you know a little programming)
+
+
+TUTORIAL PAGE
+Pixel art, animation! /project02
+Randomization, drawing on a canvas /project03
+WebGL Game! /project04
+Cubes and Graphical User Interfaces! /project05
+Virtual Robot!/project06
+Skinning and Animating Robots! /project07
+Robot Movements and bumping into meshes! /project08
+
+
       </div>
     </center>
 
     <br><br>
     
     <center>
-      <a href="https://umb.umassonline.net" target="_blank">* Blackboard Access *</a><br>
+      <!-- <a href="https://umb.umassonline.net" target="_blank">* Blackboard Access *</a><br>
       <a href="#lectures">* Lecture Videos and Slides *</a> 
       <br><br>
 
@@ -43,19 +221,19 @@
         <a href="http://www.informit.com/store/webgl-programming-guide-interactive-3d-graphics-programming-9780321902924" target="_blank"><img src='gfx/matsuda_cover.jpg' class='bookthumb'></a>
         <a href="https://www.manning.com/books/secrets-of-the-javascript-ninja" target="_blank"><img src='gfx/resig_cover.jpg' class='bookthumb'></a>
       </div>
-      Do you need to buy these books? <span style='color:red'>No!</span> All course materials will be provided.
+      Do you need to buy these books? <span style='color:red'>No!</span> All course materials will be provided. -->
     </center>
 
     <br><br>
 
-    <center>Fall 2019<br>
+   <!--  <center>Fall 2019<br>
       <span style='font-size:32px'>Mondays / Wednesdays / Fridays<br>2:00p - 2:50p<br>W02-0158</span>
-    </center>
+    </center> -->
 
     <br><br>
 
     <center>
-      <div id='instructor'>
+      <!-- <div id='instructor'>
         <div style='float:left'>
         <img src='gfx/haehn.jpg' style='width:100px;'>
        </div>
@@ -65,7 +243,7 @@
           <a href='https://danielhaehn.com'>DANIELHAEHN.com</a><br>McCormack, M03-212<br><br>
           Office hours: M / W / F at 1:00p-2:00p or <a href='mailto:LASTNAME@cs.umb.edu'>email me</a>
         </div>
-      </div>
+      </div> -->
     </center>
 
     <br><br>
@@ -79,7 +257,7 @@
 
 
     <center style='width:100%;display:inline-block;'>
-      <span style='font-size:32px'><a name='lectures'></a>Lecture Videos and Slides</span><br><br>
+      <!-- <span style='font-size:32px'><a name='lectures'></a>Lecture Videos and Slides</span><br><br> -->
       <center>
 
       </center>
@@ -87,11 +265,11 @@
 
     <footer>
       <div style="display:inline-block;margin-top:0px;">
-        <div style="float:left;"><a href="https://www.umb.edu" class="invisiblelink" target=_blank"><img src="/gfx/umb_gray.png" width="50" style="float:left" title="CS.UMB.EDU"></a><div class="institution_bottom white"><a href="https://www.umb.edu" class="invisiblelink" target=_blank">UNIVERSITY OF MASSACHUSETTS BOSTON<br>Department of Computer Science<br>College of Science and Mathematics</a></div>
-        <div style="float:left;padding-left:30px"><a href="https://bostongfx.com" target="_blank" class='invisiblelink'><img src="/gfx/bostongfx.png" width="100" title="bostonGFX.com"><span class="small white" style="display:block;margin-top:-6px">Graphics For Everybody</span></a></div>
+        <!-- <div style="float:left;"><a href="https://www.umb.edu" class="invisiblelink" target=_blank"><img src="/gfx/umb_gray.png" width="50" style="float:left" title="CS.UMB.EDU"></a><div class="institution_bottom white"><a href="https://www.umb.edu" class="invisiblelink" target=_blank">UNIVERSITY OF MASSACHUSETTS BOSTON<br>Department of Computer Science<br>College of Science and Mathematics</a></div>
+        <div style="float:left;padding-left:30px"><a href="https://bostongfx.com" target="_blank" class='invisiblelink'><img src="/gfx/bostongfx.png" width="100" title="bostonGFX.com"><span class="small white" style="display:block;margin-top:-6px">Graphics For Everybody</span></a></div> -->
         <br>
-        <a href="https://ILOVEYOU.boston" target="_blank"><img src="/gfx/ILYboston.png" width="120" title="ILOVEYOU.boston" style="padding-top:35px"></a>
-        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="position:absolute;right:10px;bottom:4px;"><img src="/gfx/cc.png"></a>
+        <!-- <a href="https://ILOVEYOU.boston" target="_blank"><img src="/gfx/ILYboston.png" width="120" title="ILOVEYOU.boston" style="padding-top:35px"></a>
+        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="position:absolute;right:10px;bottom:4px;"><img src="/gfx/cc.png"></a> -->
       </div>
     </footer>
 
