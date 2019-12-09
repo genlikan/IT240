@@ -111,10 +111,6 @@ a:active {
   text-align: justify;
 }
 
-#instructor {
-  width: 540px;
-}
-
 #examplelabel {
   transform: rotate(270deg);
   float: left;

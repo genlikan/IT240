@@ -92,3 +92,44 @@ a:active {
   margin: 0px;
 }
 /*////////////////////////////////////////////////////////////////////////////////////////*/
+
+.highlight {
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 120px;
+  color: pink;
+  background-color: #111;
+  border: thick solid darkgray;
+}
+#description {
+  width: 640px;
+  text-align: justify;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////*/
+.farleft {
+    float: left;
+    width: 33.33%;
+}
+
+.farright {
+  float: left;
+    width: 33.33%;
+}
+
+.center {
+  float: left;
+    width: 33.33%;
+}
+
+
+.left {
+    float: left;
+    width: 50%;
+}
+
+.right {
+    float: right;
+    width: 50%;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////*/
