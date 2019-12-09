@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/webgl.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IT240 Web Fluency at UMass Boston</title>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <!-- <script type="text/javascript" src="js/table.js"></script> -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+    <script src="https://threejs.org/build/three.js" type="text/javascript"></script>
+    <!-- <script src="https://threejs.org/build/three.min.js" type="text/javascript"></script> -->
+    <!-- <script src="https://threejs.org/build/three.module.js" type="text/javascript"></script> -->
+    <!-- <script src="https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/GLTFLoader.js" type="text/javascript"></script> -->
+
+    <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
+  </head>
+  <body>
+    
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#top">Top</a>
+      <a href="#WebGL">What is WebGL?</a>
+      <a href="#Rubik’s Cube">Rubik's Cube</a>
+      <a href="#Data Visualization">Data Visualization</a>
+      <a href="#slicedrop">SliceDrop</a>
+      <a href="#bottom">Bottom</a>
+    </div>
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
+    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Web Fluency</span></div>
+    <div class="sidebar">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
+    <center>
+      <div id='description' class='highlight'>
+       <!-- <span class='highlight'> -->
+       <h1 id="about me">About me</h1>
+       <p>
+        About me, 
+        -Hobbies, 
+        Beatboxing https://www.youtube.com/watch?v=RzSDYOtGAu8
+        voice acting https://youtu.be/ZoLXPa4vw9M
+        video editing (Hiso)https://www.youtube.com/watch?v=4p62yLZpxKQ
+        Pcbuilding - (Main PC) https://pcpartpicker.com/list/k7Q4nH
+        (Second PC) https://pcpartpicker.com/list/sxvzYH
+       </p>
+
+
+      </div>
+    </center>
+
+    <br><br>
+
+    <center style='width:100%;display:inline-block;margin-top:50px'>
+      <div style='width:950px'>
+        <span id='examplelabel'>WebGL Example using <a href="http://goXTK.com" target="_blank">XTK</a>!</span><br>
+        <iframe src="webgl/umb/" width="940" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </center>
+
+
+    <center style='width:100%;display:inline-block;'>     </center>
+
+
+    <footer>
+      <div style="display:inline-block;margin-top:0px;">      </div>
+    </footer>
+
+  </body>
+</html>

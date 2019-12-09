@@ -1,199 +1,144 @@
-
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/webgl.png">
     <meta charset="utf-8" />
-    <title>CS460 Graphics at UMass Boston</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IT240 Web Fluency at UMass Boston</title>
     <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
-    <script type="text/javascript" src="js/table.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/fonts.css"/>
     <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+    <script src="https://threejs.org/build/three.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
   </head>
   <body>
-    
-    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>CS460 Graphics</span></div>
+    <div id="wrapper">
 
-    <br>
+    <div class="content">
+      <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Web Fluency</span></div>
+      <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#top">Top</a>
+      <a href="#WebGL">What is WebGL?</a>
+      <a href="#Rubik’s Cube">Rubik's Cube</a>
+      <a href="#Data Visualization">Data Visualization</a>
+      <a href="#slicedrop">SliceDrop</a>
+      <a href="#bottom">Bottom</a>
+    </div>
 
-    <center>
-      <iframe class='video' src="https://player.vimeo.com/video/345249001?byline=0&portrait=0&title=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <div class="sidebar">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
+
+    <script type="text/javascript">
+    const backgroundColor = 0x000000;
+    /*////////////////////////////////////////*/
+    var renderCalls = [];
+    function render () {
+      requestAnimationFrame( render );
+      renderCalls.forEach((callback)=>{ callback(); });
+    }
+    render();
+    /*////////////////////////////////////////*/
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
+    camera.position.set(0,0,1.2);
+    var renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor( backgroundColor );//0x );
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = Math.pow( 0.94, 5.0 );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+    window.addEventListener( 'resize', function () {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }, false );
+    document.body.appendChild( renderer.domElement);
+    function renderScene(){ renderer.render( scene, camera ); }
+    renderCalls.push(renderScene);
+    /* ////////////////////////////////////////////////////////////////////////// */
+    var controls = new THREE.OrbitControls( camera );
+    controls.enableZoom = false;
+    /* ////////////////////////////////////////////////////////////////////////// */
+    var light = new THREE.PointLight( 0xffffcc, 20, 200 );
+    light.position.set( 4, 30, -20 );
+    scene.add( light );
+    var light2 = new THREE.AmbientLight( 0x20202A, 20, 100 );
+    light2.position.set( 30, -10, 30 );
+    scene.add( light2 );
+    /* ////////////////////////////////////////////////////////////////////////// */
+    var loader = new THREE.GLTFLoader();
+    loader.crossOrigin = true;
+    loader.load( 'models/webgl_logo/scene.gltf', function ( data ) {
+        logo = data.scene;
+        logo.position.set(0, 0, 0);
+        scene.add( logo );
+    });
+    window.onload = function() {
+      animate();
+    }
+     function animate() {
+        requestAnimationFrame( animate );
+        if (logo.rotation.y < 6.3){
+          logo.rotation.y += 0.005;
+          console.log(logo.rotation.y);   
+        }
+      };
+    </script>
+
+    <center>    
+        <p>This text is in frontend</p>
+
+        <h1 id="tutorial">Tutorial</h1>
+      <p>
+      TUTORIAL PAGE
+      Pixel art, animation! /project02
+      Randomization, drawing on a canvas /project03
+      WebGL Game! /project04
+      Cubes and Graphical User Interfaces! /project05
+      Virtual Robot!/project06
+      Skinning and Animating Robots! /project07
+      Robot Movements and bumping into meshes! /project08
+      </p>
     </center>
+    </div>
+    <div>
+      <p>TESTTESTTEST</p>
+    </div>
+    <div class="background">
+    </div>
+</div>
 
-    <center>
-      <div id='description'>
-       <span class='highlight'> After completion of this course, you will be able to develop rich and interactive web-based 3D visualizations for computers, smartphones, and tablets!</span> By using WebGL, you will learn to create immersive and high-quality graphics including 3D geometric transformations, camera transformations, the image-rendering process, as well as materials and texture mapping. This course also includes advanced topics such as color representations, light simulation, dealing with geometries, and creating animations. And since everything runs in the browser, you can show your work to your friends with a link to a website-how cool is that!
-      </div>
-    </center>
+    <div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>
 
-    <br><br>
-    
-    <center>
-      <a href="https://umb.umassonline.net" target="_blank">* Blackboard Access *</a><br>
-      <a href="#lectures">* Lecture Videos and Slides *</a> 
-      <br><br>
 
-      <span style='font-size:32px'>Syllabus</span><br>
-      <a href="syllabus.pdf" target="_blank"><img src='gfx/thumb.png' class='bookthumb'></a>
-
-      <br><br>
-      <span style='font-size:32px'>A hands-on experience based on</span>
-      <div id='textbooks'>
-        <a href="https://mitpress.mit.edu/books/foundations-3d-computer-graphics" target="_blank"><img src='gfx/gortler_cover.jpg' class='bookthumb'></a>
-        <a href="http://www.informit.com/store/webgl-programming-guide-interactive-3d-graphics-programming-9780321902924" target="_blank"><img src='gfx/matsuda_cover.jpg' class='bookthumb'></a>
-        <a href="https://www.manning.com/books/secrets-of-the-javascript-ninja" target="_blank"><img src='gfx/resig_cover.jpg' class='bookthumb'></a>
-      </div>
-      Do you need to buy these books? <span style='color:red'>No!</span> All course materials will be provided.
-    </center>
-
-    <br><br>
-
-    <center>Fall 2019<br>
-      <span style='font-size:32px'>Mondays / Wednesdays / Fridays<br>2:00p - 2:50p<br>W02-0158</span>
-    </center>
-
-    <br><br>
-
-    <center>
-      <div id='instructor'>
-        <div style='float:left'>
-        <img src='gfx/haehn.jpg' style='width:100px;'>
-       </div>
-        <div style='float:left; text-align:left; margin-left:20px'>
-          Asst. Prof.
-          <span style='font-size:32px'>Daniel Haehn, PhD</span><br>
-          <a href='https://danielhaehn.com'>DANIELHAEHN.com</a><br>McCormack, M03-212<br><br>
-          Office hours: M / W / F at 1:00p-2:00p or <a href='mailto:LASTNAME@cs.umb.edu'>email me</a>
-        </div>
-      </div>
-    </center>
 
     <br><br>
 
     <center style='width:100%;display:inline-block;margin-top:50px'>
-      <div style='width:950px'>
-        <span id='examplelabel'>WebGL Example using <a href="http://goXTK.com" target="_blank">XTK</a>!</span><br>
-        <iframe src="webgl/umb/" width="940" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
     </center>
-
-    <br><br>
 
     <center style='width:100%;display:inline-block;'>
-      <span style='font-size:32px'><a name='lectures'></a>Lecture Videos and Slides</span><br><br>
-      <center>
-
-<br>
-
-      Lecture 3 - JavaScript (<a href="https://slides.com/haehn/cs460_lecture03" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/cf50fd11-39ae-45d7-9c3f-b3c60abbfa91/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 4 - XTK Intro (<a href="https://slides.com/haehn/cs460_lecture04" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/6fbd006c-435f-44a8-99bc-602553c26cc9/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 5 - Scene and Camera (<a href="https://slides.com/haehn/cs460_lecture05" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/e786b94c-abb2-41af-9043-1bf900223b3c/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 6 - Three.js Intro (<a href="https://slides.com/haehn/cs460_lecture06" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/fc48f146-a2ee-4e3b-91cb-27d8d3cae9ad/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 7 - The Rendering Pipeline (<a href="https://slides.com/haehn/cs460_lecture07" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/1b49d4a4-a867-41ef-948a-27948ef87bdc/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 8 - Shaders (<a href="https://slides.com/haehn/cs460_lecture08" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/462d7787-10da-4c85-919d-d281a1065388/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 9 - WebGL I (<a href="https://slides.com/haehn/cs460_lecture09" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/e3d2ca82-07cc-485e-a591-ffdd38e46b9f/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 10 - WebGL II (<a href="https://slides.com/haehn/cs460_lecture10" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/1141b9cd-0127-40ae-ab2c-c720baafeabd/public?autoplay=false&automute=false"></iframe>
-      <br><br>
-
-      Lecture 11 - WebGL III (<a href="https://slides.com/haehn/cs460_lecture11" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/97fbd8b6-4d20-4380-b14f-14b774184da9/public?autoplay=false&automute=false"></iframe>
-<br><br>
-
-      Lecture 13 - Transformations II (<a href="https://slides.com/haehn/cs460_lecture13" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/204aa0ff-6b0a-4e1e-8d35-e89e24ab569c/public?autoplay=false&automute=false"></iframe>
-<br><br>
-
-      Lecture 14 - The Scene Graph (<a href="https://slides.com/haehn/cs460_lecture14" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/6cb843dd-3024-4428-82a9-830cfe6ef103/public?autoplay=false&automute=false"></iframe>
-<br><br>
-
-      Lecture 15 - Quaternions (<a href="https://slides.com/haehn/cs460_lecture15" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/85d4d6b1-85f5-45ea-a65e-7227331fc6a0/public?autoplay=false&automute=false"></iframe>
-<br><br>
-
-      Lecture 16 - The Arcball (<a href="https://slides.com/haehn/cs460_lecture16" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/f8119127-bd24-4314-aa9d-119262bc71ee/public?autoplay=false&automute=false"></iframe>
-<br><br>
-
-      Lecture 17 - 3D Picking (<a href="https://slides.com/haehn/cs460_lecture17" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/982d7097-5440-4fbb-a275-694a4f49dd97/public?autoplay=false&automute=false"></iframe>
-
-<br><br>
-
-      Lecture 18 - Guest Lecture by Jasmine Roberts (<a href="https://cs460.org/jasmine_roberts_slides.pdf" target="_blank">Slides</a>)<br>
-            No video for this one.
-
-<br><br>
-
-      Lecture 19 - Colors (<a href="https://slides.com/haehn/cs460_lecture19" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/bccdeb42-aa42-42ba-a5d1-1c109e547ec9/public?autoplay=false&automute=false"></iframe>
-
-
-<br><br>
-
-      Lecture 20 - Recap I (<a href="https://slides.com/haehn/cs460_lecture20" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/4fedb4a8-a23a-4287-b0f0-cec1492c737b/public?autoplay=false&automute=false"></iframe>
-
-
-<br><br>
-
-      Lecture 21 - Animations I (<a href="https://slides.com/haehn/cs460_lecture21" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/799f207e-33aa-4dd1-8c0b-5eefd30b4bf0/public?autoplay=false&automute=false"></iframe>
-
-<br><br>
-
-      Lecture 22 - Animations II (<a href="https://slides.com/haehn/cs460_lecture22" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/6a15dd34-1496-4110-8729-2bbd8be5cf92/public?autoplay=false&automute=false"></iframe>
-
-<br><br>
-
-      Lecture 23 - Animations III (<a href="https://slides.com/haehn/cs460_lecture23" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/45f563c2-3c4f-4ac4-b95c-4386022b848f/public?autoplay=false&automute=false"></iframe>
-
-<br><br>
-
-      Lecture 24 - Guest Lecture by Funda Durupinar Babur (<a href="https://drive.google.com/open?id=1cYgJmUHCM-z4eJLGTkmJlxnlFgIo79oM" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/e5619e22-009c-4b4b-b78f-0c30aa21b77e/public?autoplay=false&automute=false"></iframe>
-
-<br><br>
-
-      Lecture 25 - Animations III (<a href="https://slides.com/haehn/cs460_lecture25" target="_blank">Slides</a>)<br>
-            <iframe class="video" height="360" width="640" allowfullscreen frameborder=0 src="https://echo360.org/media/3da1dae7-2276-43a2-9c22-52cbc091eecc/public?autoplay=false&automute=false"></iframe>
-
-
     </center>
-    <br><br><br>
 
     <footer>
-      <div style="display:inline-block;margin-top:0px;">
-        <div style="float:left;"><a href="https://www.umb.edu" class="invisiblelink" target=_blank"><img src="/gfx/umb_gray.png" width="50" style="float:left" title="CS.UMB.EDU"></a><div class="institution_bottom white"><a href="https://www.umb.edu" class="invisiblelink" target=_blank">UNIVERSITY OF MASSACHUSETTS BOSTON<br>Department of Computer Science<br>College of Science and Mathematics</a></div>
-        <div style="float:left;padding-left:30px"><a href="https://bostongfx.com" target="_blank" class='invisiblelink'><img src="/gfx/bostongfx.png" width="100" title="bostonGFX.com"><span class="small white" style="display:block;margin-top:-6px">Graphics For Everybody</span></a></div>
-        <br>
-        <a href="https://ILOVEYOU.boston" target="_blank"><img src="/gfx/ILYboston.png" width="120" title="ILOVEYOU.boston" style="padding-top:35px"></a>
-        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="position:absolute;right:10px;bottom:4px;"><img src="/gfx/cc.png"></a>
-      </div>
+      <div style="display:inline-block;margin-top:0px;">      </div>
     </footer>
 
   </body>

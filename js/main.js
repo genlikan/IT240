@@ -1,6 +1,6 @@
-window.onload = function() {
-  
-  // display the course schedule
-  load('schedule.txt', build_table);
-
+function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
 }

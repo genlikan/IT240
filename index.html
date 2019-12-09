@@ -2,42 +2,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/webgl.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CS460 Graphics at UMass Boston</title>
+    <title>IT240 Web Fluency at UMass Boston</title>
     <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
-    <!-- <script type="text/javascript" src="js/table.js"></script> -->
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/fonts.css"/>
     <link rel="stylesheet" type="text/css" href="styles/main.css"/>
     <script src="https://threejs.org/build/three.js" type="text/javascript"></script>
-    <!-- <script src="https://threejs.org/build/three.min.js" type="text/javascript"></script> -->
-    <!-- <script src="https://threejs.org/build/three.module.js" type="text/javascript"></script> -->
-    <!-- <script src="https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/GLTFLoader.js" type="text/javascript"></script> -->
-
     <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
+    <style type="text/css">
+.auto-style1 {
+	margin-right: 0px;
+}
+</style>
   </head>
   <body>
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="#top">Top</a>
+      <br>
       <a href="#WebGL">What is WebGL?</a>
       <a href="#Rubik’s Cube">Rubik's Cube</a>
       <a href="#Data Visualization">Data Visualization</a>
       <a href="#slicedrop">SliceDrop</a>
-      <a href="#bottom">Bottom</a>
+      <br>
+      <a href="tutorial.html" target="_blank">Tutorial Page</a>
+      <a href="about.html" target="_blank">About Me</a>
     </div>
-    <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
-    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Graphics</span></div>
+    <div style='width:100%;height:48px;background-color: #005a8c;'><span class='header' style='float:left;'>University of Massachusetts Boston</span><span class='header' style='float:right;'>IT240 Web Fluency</span></div>
     <div class="sidebar">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
     </div>
@@ -101,17 +97,17 @@
     </script>
     <br>
     <center>
-      <div id='description'>
-       <span class='highlight'>
-       <h1 id="WebGL">What is WebGL?</h1>
-<p>
-In short, is a JavaScript API that allows for GPU-accelerated usage.
-</p>
+      <div id='description' class='highlight'>
+       <!-- <span class='highlight'> -->
+       <h1 style= color:hotpink id="WebGL">What is WebGL?</h1>
+       <p>
+        In short, is a JavaScript API that allows for GPU-accelerated usage.
+      </p>
 <p>
 But technological descriptions are esoteric in nature, time to showcase some popular applications of WebGL.
 </p>
 
-<iframe src="http://madebyevan.com/webgl-water/" width="990" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="http://madebyevan.com/webgl-water/" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="auto-style1" style="width: 750px"></iframe>
 
 <p>Here is one of, if not the most popular examples associated with WebGL technology. </p>
 <p> Made by <a href="http://madebyevan.com/webgl-water/" target="_blank">Evan Wallace</a>, this WebGL demo requires a decent modern graphics card to execute.
@@ -127,8 +123,7 @@ If you don’t see it on here, you may refer to this link on <a href="https://ww
  </p>
 
 <p id="Rubik’s Cube"><iframe src="https://www.randelshofer.ch/webgl/rubikscube/" width="740" height="660"></iframe></p>
-Rubik’s cube: <a href="https://www.randelshofer.ch/webgl/rubikscube/" target="_blank">Website Link</a> <br>
-
+<h2>Rubik’s cube: <a href="https://www.randelshofer.ch/webgl/rubikscube/" target="_blank">Website Link</a></h2>
 <p>Ah, the Rubik's Cube, an old friend.</p>
 <p>Feel free to experiment with the controls!</p>
 <p>As the Rubik's Cube demonstrates, <br> WebGL can also be used to create tools and interactive toys, games, and the like.</p>
@@ -157,6 +152,7 @@ Data Visualizations isn't just limited to Global Climate change awareness.
 <blockquote cite="https://slicedrop.com/">
 "The surface of the left hemisphere of a 2 years old healthy brain."
 </blockquote>
+
 Developed by a fellow University of Massachusetts Boston Professor <a href="http://www.danielhaehn.com" target="_blank">Daniel Haehn</a>.
 <br>
 <a href="https://slicedrop.com/" target="_blank">SliceDrop</a> - is a tool to conceptualize the human brain and other medical applications in interactive 3D space.
@@ -164,92 +160,26 @@ Developed by a fellow University of Massachusetts Boston Professor <a href="http
 This tool also features realtime collaboration.
 </p>
 
+<h2>So is this technology hard to use?</h2>
+<p>
+Surprisingly simple!<br>
+(Provided you know a little programming that is)<br>
+</p>
 
-So is this technology hard to use?
-Surprisingly simple!
-(Provided you know a little programming)
+<p>Visit the <a href="tutorial.html" target="_blank">Tutorial Page</a> to learn more about how YOU can use WebGL for your own projects!</p>
 
 
-TUTORIAL PAGE
-Pixel art, animation! /project02
-Randomization, drawing on a canvas /project03
-WebGL Game! /project04
-Cubes and Graphical User Interfaces! /project05
-Virtual Robot!/project06
-Skinning and Animating Robots! /project07
-Robot Movements and bumping into meshes! /project08
+<br>
 
 
       </div>
     </center>
-
-    <br><br>
-    
-    <center>
-      <!-- <a href="https://umb.umassonline.net" target="_blank">* Blackboard Access *</a><br>
-      <a href="#lectures">* Lecture Videos and Slides *</a> 
-      <br><br>
-
-      <span style='font-size:32px'>Syllabus</span><br>
-      <a href="syllabus.pdf" target="_blank"><img src='gfx/thumb.png' class='bookthumb'></a>
-
-      <br><br>
-      <span style='font-size:32px'>A hands-on experience based on</span>
-      <div id='textbooks'>
-        <a href="https://mitpress.mit.edu/books/foundations-3d-computer-graphics" target="_blank"><img src='gfx/gortler_cover.jpg' class='bookthumb'></a>
-        <a href="http://www.informit.com/store/webgl-programming-guide-interactive-3d-graphics-programming-9780321902924" target="_blank"><img src='gfx/matsuda_cover.jpg' class='bookthumb'></a>
-        <a href="https://www.manning.com/books/secrets-of-the-javascript-ninja" target="_blank"><img src='gfx/resig_cover.jpg' class='bookthumb'></a>
-      </div>
-      Do you need to buy these books? <span style='color:red'>No!</span> All course materials will be provided. -->
-    </center>
-
     <br><br>
 
-   <!--  <center>Fall 2019<br>
-      <span style='font-size:32px'>Mondays / Wednesdays / Fridays<br>2:00p - 2:50p<br>W02-0158</span>
-    </center> -->
-
-    <br><br>
-
-    <center>
-      <!-- <div id='instructor'>
-        <div style='float:left'>
-        <img src='gfx/haehn.jpg' style='width:100px;'>
-       </div>
-        <div style='float:left; text-align:left; margin-left:20px'>
-          Asst. Prof.
-          <span style='font-size:32px'>Daniel Haehn, PhD</span><br>
-          <a href='https://danielhaehn.com'>DANIELHAEHN.com</a><br>McCormack, M03-212<br><br>
-          Office hours: M / W / F at 1:00p-2:00p or <a href='mailto:LASTNAME@cs.umb.edu'>email me</a>
-        </div>
-      </div> -->
-    </center>
-
-    <br><br>
-
-    <center style='width:100%;display:inline-block;margin-top:50px'>
-      <div style='width:950px'>
-        <span id='examplelabel'>WebGL Example using <a href="http://goXTK.com" target="_blank">XTK</a>!</span><br>
-        <iframe src="webgl/umb/" width="940" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-    </center>
-
-
-    <center style='width:100%;display:inline-block;'>
-      <!-- <span style='font-size:32px'><a name='lectures'></a>Lecture Videos and Slides</span><br><br> -->
-      <center>
-
-      </center>
-
+    <center style='width:100%;display:inline-block;'>     </center>
 
     <footer>
-      <div style="display:inline-block;margin-top:0px;">
-        <!-- <div style="float:left;"><a href="https://www.umb.edu" class="invisiblelink" target=_blank"><img src="/gfx/umb_gray.png" width="50" style="float:left" title="CS.UMB.EDU"></a><div class="institution_bottom white"><a href="https://www.umb.edu" class="invisiblelink" target=_blank">UNIVERSITY OF MASSACHUSETTS BOSTON<br>Department of Computer Science<br>College of Science and Mathematics</a></div>
-        <div style="float:left;padding-left:30px"><a href="https://bostongfx.com" target="_blank" class='invisiblelink'><img src="/gfx/bostongfx.png" width="100" title="bostonGFX.com"><span class="small white" style="display:block;margin-top:-6px">Graphics For Everybody</span></a></div> -->
-        <br>
-        <!-- <a href="https://ILOVEYOU.boston" target="_blank"><img src="/gfx/ILYboston.png" width="120" title="ILOVEYOU.boston" style="padding-top:35px"></a>
-        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="position:absolute;right:10px;bottom:4px;"><img src="/gfx/cc.png"></a> -->
-      </div>
+
     </footer>
 
   </body>

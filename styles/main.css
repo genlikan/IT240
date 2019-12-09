@@ -6,7 +6,6 @@ html, body {
   font-size: 18pt;
   color: white;
 }
-
 a {
   color: hotpink;
   text-decoration: none;
@@ -17,12 +16,12 @@ a:hover {
 }
 
 a:link {
-  color: green;
+  color: hotpink;
   background-color: transparent;
   text-decoration: none;
 }
 a:visited {
-  color: pink;
+  color: hotpink;
   background-color: transparent;
   text-decoration: none;
 }
@@ -91,12 +90,13 @@ a:active {
   background-color: #005a8c;
 }
 
-.video {
-  border: thin solid darkgray;
-}
-
 .highlight {
-  color: hotpink;
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 120px;
+  color: pink;
+  background-color: #111;
+  border: thick solid darkgray;
 }
 
 .bookthumb {
@@ -125,16 +125,6 @@ a:active {
   padding: 10px;
   width: 560px;
   text-align: right;
-}
-
-#schedule {
-  width: 640px;
-}
-
-#scheduletable {
-  margin-left:100px;
-  width:800px;
-  /*font-size: 14pt;*/
 }
 
 footer {
