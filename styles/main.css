@@ -35,6 +35,7 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////*/
 .sidebar {
   width: 10%;
   height: 10%;
@@ -81,7 +82,7 @@ a:active {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-
+/*////////////////////////////////////////////////////////////////////////////////////////*/
 .header {
   padding-top: 10px;
   padding-left: 10px;
