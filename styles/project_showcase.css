@@ -98,10 +98,10 @@ a:active {
 }
 
 .content{
-
+  width: 940px;
   padding-top: 10px;
-  padding-left: 50px;
-  padding-right: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: #FFFFFF;
   text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
   background-color: #111;
